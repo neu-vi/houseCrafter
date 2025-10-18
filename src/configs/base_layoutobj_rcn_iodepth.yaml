@@ -1,0 +1,48 @@
+
+
+# params set for rcn model
+model:
+  use_ray: True
+  use_cond_ray: True
+  use_layout: True
+  output_depth: True
+  in_depth: True
+  unet_cls: unet_2d_condition2.UNet2DConditionModel
+  params:
+    in_channels: 8
+    out_channels: 8
+    down_block_types: [
+      'RCNCrossAttnDownBlock2D', 
+      'RCNCrossAttnDownBlock2D', 
+      'RCNCrossAttnDownBlock2D', 
+      'RCNDownBlock2D'
+    ]
+    up_block_types: [
+      'RCNUpBlock2D', 
+      'RCNCrossAttnUpBlock2D', 
+      'RCNCrossAttnUpBlock2D', 
+      'RCNCrossAttnUpBlock2D'
+    ]
+    mid_block_type: "RCNUNetMidBlock2DCrossAttn"
+    m_bands: 6
+    d_bands: 6
+    use_rcn: True
+    low_cpu_mem_usage: False
+    # layout cfg
+    n_layout_cls: 40
+    use_back_point: False
+    model_strides: [8, 16, 32, 64]
+    layout_pos_dim: 2
+    layout_cfg:
+      target: diffusers.models.layout_attn.LayoutTransformerObj
+      params:
+        in_channels: -1 # this will be overwritten in the model if -1
+        d_head: 16 # this will be overwritten in the model if -1
+        n_heads: 8
+        context_dim: 512 # need to be the same as the main model to use clip embedding
+        dropout: 0.0
+        kernel_size: 1 # must be odd
+    pos3d_dim: 3
+    pos3d_band: 6
+
+

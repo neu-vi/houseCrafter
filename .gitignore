@@ -1,0 +1,81 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+ENV/
+env/
+.venv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Model checkpoints (large files)
+ckpts/
+*.pth
+*.ckpt
+*.safetensors
+
+# Generated data
+gen_rgbd/
+generated_data_v0/
+outputs/
+
+# Data
+dataRelease/
+data/
+/datasets/
+
+# Logs
+logs/
+*.log
+wandb/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# BlenderProc-3DFront specific
+BlenderProc-3DFront/output/
+BlenderProc-3DFront/examples/datasets/front_3d_with_improved_mat/renderings/
+BlenderProc-3DFront/examples/datasets/front_3d_with_improved_mat/renderings_fixed/
+BlenderProc-3DFront/examples/datasets/front_3d_with_improved_mat/images_*/
+BlenderProc-3DFront/examples/datasets/front_3d_with_improved_mat/rgb/
+BlenderProc-3DFront/examples/datasets/front_3d_with_improved_mat/locations*/
+BlenderProc-3DFront/examples/datasets/front_3d_with_improved_mat/poses_*/
+BlenderProc-3DFront/examples/datasets/front_3d_with_improved_mat/preprocess/
+BlenderProc-3DFront/examples/debugging/temp/
+*.hdf5
+*.exr
+

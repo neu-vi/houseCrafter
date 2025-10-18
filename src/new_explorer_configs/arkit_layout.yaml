@@ -1,0 +1,42 @@
+wandb_offline: True
+
+dir:
+  output_dir: "logs_eschernet_arkit"
+  logging_dir: "logs_eschernet_arkit"
+
+model:
+  layout_cfg: True
+  params:
+    n_layout_cls: 20
+  T_in: 3
+  T_in_val: 3
+  T_out: 6
+  use_depths_mask: False
+  # base_model: /work/vig/hieu/escher/logs_eschernet_3dfront_layoutobj_iodepth_1871_scene_3m_final_rerender5m/pipeline-10000
+
+
+
+data:
+  target: data_modules.arkitScene.ArkitSceneDataLoader
+  params:
+    root_dir: "/work/vig/Datasets/ARKITScenes/3dod/Training"
+    depth_tform_cfg:
+      target: data_modules.data_utils.DepthLinearTransform
+      params:
+        min_depth: 0.0
+        max_depth: 3.0
+        clip: True
+    batch_size: 16
+    num_workers: 4
+    # depths_mask_range: 2.5
+
+training:
+  gradient_accumulation_steps: 1
+  checkpointing_steps: 500
+  checkpoints_total_limit: 6
+  max_train_steps: 15000
+  skip_nan_loss: True
+  zero_nan_grad: True
+
+validation:
+  validation_steps: 1000

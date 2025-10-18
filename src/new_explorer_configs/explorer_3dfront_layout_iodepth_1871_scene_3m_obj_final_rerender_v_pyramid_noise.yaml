@@ -1,0 +1,91 @@
+wandb_offline: True
+
+dir:
+  output_dir: "logs_eschernet_3dfront_layout_iodepth_1871_scene_3m_obj_final_rerender_v_pyramid_noise"
+  logging_dir: "logs_eschernet_3dfront_layout_iodepth_1871_scene_3m_obj_final_rerender_v_pyramid_noise"
+
+model:
+  layout_cfg: True
+  params:
+    n_layout_cls: 87
+  T_in: 1
+  T_in_val: 1
+  T_out: 8
+
+
+data:
+  target: data_modules.front3d_combine.ConcatLayoutRCNFront3DDataModule
+  params:
+    train_dir: ["", "/projects/vig/Datasets/3D-Front/render_data/obj_images_1500scenes"]
+    val_dir:
+      [
+        "/projects/vig/Datasets/3D-Front/render_data/images_100scenes_random_floor",
+        "/projects/vig/Datasets/3D-Front/render_data/obj_images_1500scenes",
+      ]
+    train_depth_dir:
+      [
+        "/projects/vig/Datasets/3D-Front/render_data/depth_train_scenes_1871_path.json",
+        "/projects/vig/Datasets/3D-Front/render_data/obj_depth_1500scenes"
+      ]
+    val_depth_dir:
+      [
+        "/projects/vig/Datasets/3D-Front/render_data/depth_100scenes_random_floor",
+        "/projects/vig/Datasets/3D-Front/render_data/obj_depth_1500scenes"
+      ]
+    train_scene_ids:
+      [
+        "/projects/vig/Datasets/3D-Front/render_data/train_scenes_1871_path.json",
+        "/projects/vig/Datasets/3D-Front/render_data/train_scenes_obj838_1500.json",
+      ]
+    val_scene_ids:
+      [
+        "/projects/vig/Datasets/3D-Front/render_data/val_scenes_19_100.json",
+        "/projects/vig/Datasets/3D-Front/render_data/val_scenes_19_100.json",
+      ]
+    graph_dir: "/projects/vig/Datasets/3D-Front/render_data/graph_poses_all"
+    layout_dir:
+      [
+        "/projects/vig/Datasets/3D-Front/render_data/layout_pcd_100scenes_random_floor",
+        "/projects/vig/Datasets/3D-Front/render_data/obj_layout_pcd_1500scenes",
+      ]
+    dataset_cls:
+      [
+        "data_modules.front3d.Front3DPose",
+        "data_modules.front3d_combine.Front3DObjPose",
+      ]
+    pose_dir:
+      [
+        "/projects/vig/Datasets/3D-Front/render_data/poses_all",
+        "/projects/vig/Datasets/3D-Front/render_data/valid_obj_poses_1500",
+      ]
+    enable_remapping_cls: True
+    layout_label_ids: '/projects/vig/hieu/BlenderProc-3DFront/blenderproc/resources/front_3D/blender_label_mapping.csv'
+    depth_tform_cfg:
+      target: data_modules.data_utils.DepthLinearTransform
+      params:
+        min_depth: 0.0
+        max_depth: 3.0
+        clip: True
+    dataset_ratio: [1.0, 1.0]
+    batch_size: 8
+    image_size: 256
+    num_projectsers: 4
+    image_strides: [8, 16, 32, 64]
+    cond_image_strides: [32]
+    max_num_points: 20
+    load_cond_depth: True
+    load_target_depth: True
+    curation_meta: "/projects/vig/Datasets/3D-Front/render_data/wall_info_all"
+    n_cond_frames: 1
+    n_target_frames: 8
+
+
+training:
+  gradient_accumulation_steps: 4
+  checkpointing_steps: 500
+  checkpoints_total_limit: 4
+  max_train_steps: 15000
+  noise_type: 'pyramid'
+
+validation:
+  validation_steps: 500

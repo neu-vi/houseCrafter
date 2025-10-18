@@ -1,0 +1,55 @@
+seed: 42
+log_with: wandb
+wandb_offline: False
+
+model:
+  T_in: 3
+  T_in_val: 3
+  T_out: 3
+  layout_cfg: False
+  use_ema: False
+  base_model: stable-diffusion-v1-5/stable-diffusion-v1-5
+  guidance_scale: 3.0
+  conditioning_dropout_prob: 0.05
+  use_ray: False
+  output_depth: False
+  prediction_type: "epsilon"
+  fix_scheduler_issue: False
+  unet_cls: unet_2d_condition.UNet2DConditionModel
+  params:
+    use_rcn: False
+
+data:
+  target: ''
+  params:
+    batch_size: 4
+    num_workers: 2
+
+training:
+  gradient_accumulation_steps: 1
+  gradient_checkpointing: True
+  mixed_precision: bf16
+  learning_rate: 1e-4
+  scale_lr: False
+  lr_warmup_steps: 1000
+  lr_num_cycles: 1
+  lr_power: 1.0
+  use_8bit_adam: False
+  adam_beta1: 0.9
+  adam_beta2: 0.999
+  adam_weight_decay: 1e-2
+  adam_epsilon: 1e-8
+  max_grad_norm: 0.5
+  num_train_epochs: 1
+  max_train_steps: 100000
+  checkpointing_steps: 2000
+  checkpoints_total_limit: 5
+  skip_nan_loss: False
+  zero_nan_grad: False
+  noise_type: "gaussian" # or pyramid
+
+validation:
+  num_validation_images: 2
+  validation_steps: 2000
+  num_validation_batches: 20
+

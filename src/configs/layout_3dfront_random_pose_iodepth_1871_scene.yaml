@@ -1,0 +1,42 @@
+wandb_offline: True
+
+dir:
+  output_dir: "logs_eschernet_layout_3dfront_random_pose_iodepth_1871"
+  logging_dir: "logs_eschernet_layout_3dfront_random_pose_iodepth_1871"
+
+model:
+  params:
+    n_layout_cls: 87
+
+data:
+  target: data_modules.front3d.LayoutRCNFront3DDataModule
+  params:
+    train_dir: ''
+    val_dir: '/work/vig/hieu/3dfront_data/images_100scenes_random_floor'
+    train_scene_ids: '/work/vig/hieu/3dfront_data/train_scenes_1871_path.json'
+    val_scene_ids: '/work/vig/hieu/3dfront_data/val_scenes_19_100.json'
+    graph_dir: '/work/vig/hieu/3dfront_data/graph_poses_all'
+    layout_dir: '/work/vig/hieu/3dfront_data/layout_pcd_100scenes_random_floor'
+    dataset_cls: 'data_modules.front3d.Front3DPose'
+    pose_dir: '/work/vig/hieu/3dfront_data/poses_all'
+    depth_tform_cfg:
+      target: data_modules.data_utils.DepthLinearTransform
+      params:
+        min_depth: 0.0
+        max_depth: 30.0
+        clip: True
+    batch_size: 8
+    num_workers: 4
+    image_strides: [8,16,32,64]
+    cond_image_strides: [32]
+    max_num_points: 20
+    load_cond_depth: True
+    load_target_depth: True
+
+training:
+  gradient_accumulation_steps: 8
+  checkpointing_steps: 1000
+  checkpoints_total_limit: 2
+
+validation:
+  validation_steps: 1000

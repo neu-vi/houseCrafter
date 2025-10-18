@@ -1,0 +1,66 @@
+wandb_offline: True
+
+dir:
+  output_dir: "logs_eschernet_3dfront_layout_rand_curate_3in_6out"
+  logging_dir: "logs_eschernet_3dfront_layout_rand_curate_3in_6out"
+
+model:
+  layout_cfg: True
+  params:
+    n_layout_cls: 87
+  T_in: 3
+  T_in_val: 3
+  T_out: 6
+  use_depths_mask: False
+  # base_model: /work/vig/hieu/escher/logs_eschernet_3dfront_layoutobj_iodepth_1871_scene_3m_final_rerender5m/pipeline-10000
+
+
+
+data:
+  target: data_modules.front3d_combine2.ConcatLayoutRCNFront3DDataModule
+  params:
+    datasets_cfg:
+      - target: "data_modules.front3d_layout_obj.Front3DPose"
+        params:
+          train_dir: ""
+          val_dir: "/projects/vig/Datasets/3D-Front/render_data/images_100scenes_random_floor"
+          train_depth_dir: "/projects/vig/Datasets/3D-Front/render_data/depth_train_scenes_1871_path.json"
+          val_depth_dir: "/projects/vig/Datasets/3D-Front/render_data/depth_100scenes_random_floor"
+          train_scene_ids: "/projects/vig/Datasets/3D-Front/render_data/train_scenes_1871_path.json"
+          val_scene_ids: "/projects/vig/Datasets/3D-Front/render_data/val_scenes_19_100.json"
+          graph_dir: "/projects/vig/Datasets/3D-Front/render_data/graph_poses_all"
+          layout_dir: "/projects/vig/Datasets/3D-Front/render_data/layout_pcd_100scenes_random_floor"
+          pose_dir: "/projects/vig/Datasets/3D-Front/render_data/poses_all"
+          obj_layout_dir: "/projects/vig/Datasets/3D-Front/render_data/layouts"
+          obj_layout_range: 10
+          curation_meta: "/projects/vig/Datasets/3D-Front/render_data/wall_info_all"
+    enable_remapping_cls: True
+    layout_label_ids: '/projects/vig/hieu/BlenderProc-3DFront/blenderproc/resources/front_3D/blender_label_mapping.csv'
+    depth_tform_cfg:
+      target: data_modules.data_utils.DepthLinearTransform
+      params:
+        min_depth: 0.0
+        max_depth: 3.0
+        clip: True
+    batch_size: 8
+    num_workers: 4
+    image_strides: [8,16,32,64]
+    cond_image_strides: [32]
+    max_num_points: 20
+    load_cond_depth: True
+    load_target_depth: True
+    n_cond_frames: 3
+    n_target_frames: 6
+    # depths_mask_range: 2.5
+    curation_meta: "/projects/vig/Datasets/3D-Front/render_data/wall_info_all"
+
+training:
+  gradient_accumulation_steps: 2
+  checkpointing_steps: 500
+  checkpoints_total_limit: 6
+  max_train_steps: 30000
+  skip_nan_loss: True
+  zero_nan_grad: True
+
+validation:
+  validation_steps: 1000

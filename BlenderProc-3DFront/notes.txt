@@ -1,0 +1,24 @@
+0 fine
+1 chair missing face
+
+16 wrong scale for table
+20 wrong object scale
+
+24 good candidate to test thin object
+32 good scene
+33 wrong placement
+34 wrong scale
+35 interesting bed, looking at render images
+
+45 wrong scale for the table
+46 wrong obj scale
+64 wrong object placement
+67 should look at the bed
+86 wrong object placement
+
+90 wrong room mesh
+91 wrong mesh
+ 94 wrong object placement
+ 96 wrong chair placement
+
+ "0a8d471a-2587-458a-9214-586e003e9cf9" incorrect room mesh
