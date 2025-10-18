@@ -1,4 +1,4 @@
-# HouseCrafter: Lifting Floorplans to 3D Scenes with 2D Diffusion Model
+# HouseCrafter: Lifting Floorplans to 3D Scenes with 2D Diffusion Model (ICCV 2025 Highlight)
 
 <div align="center">
 
