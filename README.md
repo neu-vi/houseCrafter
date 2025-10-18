@@ -35,7 +35,7 @@ Official PyTorch implementation for **HouseCrafter**, a novel approach for gener
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/YOUR_USERNAME/HouseCrafter.git
+git clone https://github.com/neu-vi/houseCrafter.git
 cd HouseCrafter
 ```
 
@@ -292,7 +292,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 For questions and feedback, please contact:
 - **Author**: [Yiwen Chen]
 - **Email**: chen.yiwe@northeastern.edu
-- **Project Issues**: [GitHub Issues](https://github.com/YOUR_USERNAME/HouseCrafter/issues)
+- **Project Issues**: [GitHub Issues](https://github.com/neu-vi/houseCrafter/issues)
 
 ---
 
