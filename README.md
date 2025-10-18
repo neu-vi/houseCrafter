@@ -12,17 +12,17 @@
   <img src="assets/teaser.png" width="100%"/>
 </p>
 
-## 📰 News
+## News
 
 - **[2025/10]** Code and pre-trained models released!
 
-## 📖 Abstract
+## Abstract
 
 Official PyTorch implementation for **HouseCrafter**, a novel approach for generating 3D indoor scenes from 2D floorplan layouts using diffusion models. Our method generates high-quality RGBD images from multiple viewpoints and fuses them into coherent 3D scene representations.
 
 🌐 **Project Page**: [https://neu-vi.github.io/houseCrafter/](https://neu-vi.github.io/houseCrafter/)
 
-## 🛠️ Installation
+## Installation
 
 ### Prerequisites
 
@@ -47,7 +47,7 @@ conda activate housecrafter
 
 That's it! The environment is ready to use.
 
-## 📦 Download Checkpoints and Data
+## Download Checkpoints and Data
 
 ### Pre-trained Models
 
@@ -84,7 +84,7 @@ dataRelease/
 └── wall_info_all/
 ```
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Step 1: Generate RGBD Samples
 
@@ -117,7 +117,7 @@ The generated 3D scenes will be saved in `generated_data_v0/`. Each scene contai
 - `cam_Ts/`: Camera transformations
 - Point cloud data for 3D reconstruction
 
-## 📂 Project Structure
+## Project Structure
 
 ```
 HouseCrafter/
@@ -139,7 +139,7 @@ HouseCrafter/
 └── README.md                     # This file
 ```
 
-## 📊 Data Preprocessing
+## Data Preprocessing
 
 To prepare your own training data from the 3D-Front dataset, follow these steps:
 
@@ -244,7 +244,7 @@ python visualization/front3d/vis_front3d.py --json_file YOUR_SCENE.json
 
 For more details on customizing the rendering pipeline, refer to the [BlenderProc-3DFront documentation](https://github.com/yinyunie/BlenderProc-3DFront).
 
-## 🎓 Model Training
+## Model Training
 
 After completing the data preprocessing steps described above, you can train the model using the provided training script:
 
@@ -257,7 +257,7 @@ Make sure you have:
 - Set up the correct path to rendered data in the config files
 - Configured GPU resources (>= 48GB VRAM recommended)
 
-## 📝 Citation
+## Citation
 
 If you find this work useful for your research, please consider citing:
 
@@ -273,7 +273,7 @@ If you find this work useful for your research, please consider citing:
 }
 ```
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 This project is built upon several excellent open-source projects:
 - [Stable Diffusion](https://github.com/Stability-AI/stablediffusion)
@@ -283,11 +283,11 @@ This project is built upon several excellent open-source projects:
 
 We thank the authors for their amazing work!
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 📧 Contact
+## Contact
 
 For questions and feedback, please contact:
 - **Author**: [Yiwen Chen]
