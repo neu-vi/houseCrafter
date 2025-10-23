@@ -482,7 +482,7 @@ def main_ddim_inversion(
         if self_defiend_anchors is not None and len(self_defiend_anchors) > 0:
             target_node = self_defiend_anchors.pop(0)
 
-            generating_anchor = True
+            generating_anchor = False
             cond_view = target_node
         else:
             target_node = graph_search.next_node()
@@ -517,7 +517,7 @@ def main_ddim_inversion(
         }
         # print('current cond:', len(cond), cond[:5],"...")
         # print('current target:', len(target),target[:5],"...")
-        batch = dataset.get_item_from_meta(scene_id, frames_meta, anchor = True)
+        batch = dataset.get_item_from_meta(scene_id, frames_meta, anchor = False)
         # print('calling get_layout from the dataset')
         batch.update(
             dataset.get_layout(
@@ -598,7 +598,7 @@ def main_ddim_inversion(
                 target = target[1:]
             else:
                 target = cond
-            anchor = True
+            anchor = False
         else:
             anchor = False
 
